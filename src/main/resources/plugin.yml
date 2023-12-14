@@ -1,0 +1,5 @@
+name: SpyderCore
+main: SpyderCore.PluginLoader
+version: 1.0.0
+api: 1.0.0
+author: Cuzz_0908
