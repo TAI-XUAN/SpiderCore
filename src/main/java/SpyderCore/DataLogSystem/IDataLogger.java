@@ -18,9 +18,8 @@ public abstract class IDataLogger {
          File file = new File(PluginLoader.getInstance().getDataFolder()+"/玩家行為紀錄/"+name);
          if (!file.exists()){
              PluginLoader.getInstance().getLogger().warning("未找到"+name+"類別的玩家行為紀錄檔正在進行創建....");
-             file.mkdir();
-             PluginLoader.getInstance().getLogger().info(name+"類別的玩家行為紀錄檔創建完成 在路徑"+file.getName());
-
+             file.mkdirs();
+             PluginLoader.getInstance().getLogger().info(name+"類別的玩家行為紀錄檔創建完成 在路徑: "+file.toString());
          }
          PluginLoader.getInstance().getLogger().info("成功讀取"+name+"類別的玩家行為紀錄檔");
      }
