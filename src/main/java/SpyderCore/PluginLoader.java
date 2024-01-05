@@ -1,6 +1,7 @@
 package SpyderCore;
 
 import SpyderCore.DataLogSystem.DataLoggerManager;
+import SpyderCore.Listener.PlayerListener;
 import cn.nukkit.plugin.PluginBase;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class PluginLoader extends PluginBase {
         DataLoggerManager.registHooks();
         DataLoggerManager.initHooks();
         DataLoggerManager.enableWriteFileTask();
+        this.getServer().getPluginManager().registerEvents(new PlayerListener(),this);
     }
 
     @Override
