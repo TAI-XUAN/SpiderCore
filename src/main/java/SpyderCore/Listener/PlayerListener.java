@@ -45,7 +45,6 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         dataLog.addPlayerData(player.getName(), PluginLoader.getLocalTime() + "執行了指令：" + event.getMessage());
     }
-
     @EventHandler
     public void onBreak(BlockBreakEvent event){
         Player player = event.getPlayer();
