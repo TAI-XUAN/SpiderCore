@@ -3,6 +3,7 @@ package SpyderCore.Listener;
 import SpyderCore.DataLogSystem.DataLoggerManager;
 import SpyderCore.DataLogSystem.Types.MinecraftDataLog;
 import SpyderCore.PluginLoader;
+import SpyderCore.Tool.Utils;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;
@@ -22,20 +23,20 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void loadPlayer(PlayerLocallyInitializedEvent event){
         Player player = event.getPlayer();
-        dataLog.addPlayerData(player.getName(), PluginLoader.getLocalTime()+"登入了伺服器");
+        dataLog.addPlayerData(player.getName(), "登入了伺服器");
     }
     @EventHandler
     public void savePlayer(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        dataLog.addPlayerData(player.getName(), PluginLoader.getLocalTime()+"離開了伺服器");
+        dataLog.addPlayerData(player.getName(), "離開了伺服器");
     }
     @EventHandler
     public void onPickUpItem(InventoryPickupItemEvent event){
-
+        dataLog.addPlayerData(event.getViewers()[0].getName(), "撿起了物品 ("+ Utils.itemToString(event.getItem().getItem())+")");
     }
     @EventHandler
     public void onBreak(BlockBreakEvent event){
         Player player = event.getPlayer();
-        dataLog.addPlayerData(player.getName(), PluginLoader.getLocalTime()+"破壞了"+event.getBlock().getName()+"在位置"+event.getBlock().getLocation().toString());
+        dataLog.addPlayerData(player.getName(), "破壞了"+event.getBlock().getName()+"在位置"+event.getBlock().getLocation().toString());
     }
 }

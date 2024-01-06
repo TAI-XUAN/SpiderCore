@@ -36,7 +36,7 @@ public abstract class IDataLogger {
         }
     }
     public void addPlayerData(String name,String message){
-        QueueFileWriter.getQueue().add(new Pair<>(message,new File(PluginLoader.getInstance().getDataFolder()+"/玩家行為紀錄/"+this.name+"/"+name+".txt")));
+        QueueFileWriter.getQueue().add(new Pair<>(PluginLoader.getLocalTime()+" "+message+"\n",new File(PluginLoader.getInstance().getDataFolder()+"/玩家行為紀錄/"+this.name+"/"+name+".txt")));
     }
 
     public String getName() {
