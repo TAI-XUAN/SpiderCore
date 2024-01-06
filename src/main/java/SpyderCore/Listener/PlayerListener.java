@@ -10,6 +10,7 @@ import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.inventory.InventoryPickupItemEvent;
+import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import cn.nukkit.event.player.PlayerLocallyInitializedEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 
@@ -23,20 +24,26 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void loadPlayer(PlayerLocallyInitializedEvent event){
         Player player = event.getPlayer();
-        dataLog.addPlayerData(player.getName(), "登入了伺服器");
+        dataLog.addPlayerData(player.getName(), PluginLoader.getLocalTime()+"登入了伺服器");
     }
     @EventHandler
     public void savePlayer(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        dataLog.addPlayerData(player.getName(), "離開了伺服器");
+        dataLog.addPlayerData(player.getName(), PluginLoader.getLocalTime()+"離開了伺服器");
     }
     @EventHandler
     public void onPickUpItem(InventoryPickupItemEvent event){
         dataLog.addPlayerData(event.getViewers()[0].getName(), "撿起了物品 ("+ Utils.itemToString(event.getItem().getItem())+")");
     }
+
+    @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent event) {
+        Player player = event.getPlayer();
+        dataLog.addPlayerData(player.getName(), "執行了指令：" + event.getMessage());
+    }
     @EventHandler
     public void onBreak(BlockBreakEvent event){
         Player player = event.getPlayer();
-        dataLog.addPlayerData(player.getName(), "破壞了"+event.getBlock().getName()+"在位置"+event.getBlock().getLocation().toString());
+        dataLog.addPlayerData(player.getName(), PluginLoader.getLocalTime()+"破壞了"+event.getBlock().getName()+"在位置"+event.getBlock().getLocation().toString());
     }
 }
