@@ -46,4 +46,5 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         dataLog.addPlayerData(player.getName(), PluginLoader.getLocalTime()+"破壞了"+event.getBlock().getName()+"在位置"+event.getBlock().getLocation().toString());
     }
+    //test
 }
